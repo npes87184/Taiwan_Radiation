@@ -13,6 +13,9 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.app.Activity;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.ArrayAdapter;
@@ -30,7 +33,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		listView = (ListView)findViewById(R.id.listView1);
 		adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
-		adapter.add("地點  監測值");
+		
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -38,15 +41,23 @@ public class MainActivity extends Activity {
 				//download
 				//InputStream source = getResources().getAssets().open("gammamonitor.csv");
 				try {
-					BufferedReader reader = new BufferedReader(new InputStreamReader(getUrlData(),"BIG5"));
-					String line;
-					while((line = reader.readLine())!=null) {
-						String [] data = line.split(",");
-						if(first) {
-							first = false;
-							continue;
+					ConnectivityManager CM = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+					NetworkInfo info = CM.getActiveNetworkInfo();
+					if((info != null) && info.isConnected()) {
+						BufferedReader reader = new BufferedReader(new InputStreamReader(getUrlData(),"BIG5"));
+						adapter.add("地點  監測值(微西弗/時)");
+						String line;
+						while((line = reader.readLine())!=null) {
+							String [] data = line.split(",");
+							if(first) {
+								first = false;
+								continue;
+							}
+							adapter.add(data[0]+ "  " + data[2]);
 						}
-						adapter.add(data[0]+ "  " + data[2]);
+					}
+					else {
+						adapter.add("沒有網路，請開啟網路後重新啟動應用。");
 					}
 				} catch (IOException e) {
 				    e.printStackTrace();
