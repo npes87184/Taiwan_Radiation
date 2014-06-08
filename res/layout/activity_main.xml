@@ -6,11 +6,12 @@
     tools:context="com.example.final_project.MainActivity"
     tools:ignore="MergeRootFrame" >
 
-    <ListView
-        android:id="@+id/listView1"
+    <org.mariotaku.refreshnow.widget.RefreshNowListView
+        android:id="@+id/listview1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-    </ListView>
+    </org.mariotaku.refreshnow.widget.RefreshNowListView>
+
 
 </FrameLayout>
 
