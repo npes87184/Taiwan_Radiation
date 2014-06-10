@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -37,15 +38,17 @@ public class MainActivity extends Activity implements OnRefreshListener {
 	ArrayAdapter<String> adapter;
 	ArrayList<String> list = new ArrayList<String>();
 	Time t = new Time();
+	private boolean refreshing = false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		SysApplication.getInstance().addActivity(this);
 		listView = (RefreshNowListView)findViewById(R.id.listview1);
 		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
 		listView.setOnRefreshListener(this);
-		
+	//	listView.setRefreshIndicatorView(findViewById(android.R.id.progress));
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -53,14 +56,13 @@ public class MainActivity extends Activity implements OnRefreshListener {
 				//download thread
 				//InputStream source = getResources().getAssets().open("gammamonitor.csv");
 				refresh();
-				
 				runOnUiThread(new Runnable() {
 					@Override
 					public void run() {
 						listView.setAdapter(adapter);
 					}
 				});
-		   }
+			}
 		}).start();
 	}
 	
@@ -89,7 +91,7 @@ public class MainActivity extends Activity implements OnRefreshListener {
 			}
 			first = true;
 		} catch (IOException e) {
-		    e.printStackTrace();
+			e.printStackTrace();
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
@@ -100,30 +102,35 @@ public class MainActivity extends Activity implements OnRefreshListener {
 	@Override
 	public void onRefreshComplete() {
 		Toast.makeText(this, "重新整理完成", Toast.LENGTH_SHORT).show();
-		//setProgressBarIndeterminateVisibility(false);
+	//	setProgressBarIndeterminateVisibility(false);
 	}
 
 	@Override
 	public void onRefreshStart(final RefreshMode mode) {
-		Toast.makeText(this, "重新整理中", Toast.LENGTH_SHORT).show();
-		//setProgressBarIndeterminateVisibility(true);
+	//	Toast.makeText(this, "重新整理中", Toast.LENGTH_SHORT).show();
+	//	setProgressBarIndeterminateVisibility(true);
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				new Thread(new Runnable() {
-					@Override
-					public void run() {
-						// TODO Auto-generated method stub
-						refresh();
-					}
-				}).start();
-				adapter.notifyDataSetChanged();
-				listView.setRefreshComplete();
+				if(!refreshing) {
+					refreshing = true;
+				
+					new Thread(new Runnable() {
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							refresh();
+						}
+					}).start();
+					adapter.notifyDataSetChanged();
+					listView.setRefreshComplete();
+					refreshing = false;
+				}
 			}
-		}, 100L);
+		}, 100);  // 0.1 second
+		
 	}
 
-	
 	//Download main function.
 	public InputStream getUrlData() throws URISyntaxException, ClientProtocolException, IOException {
 		DefaultHttpClient client = new DefaultHttpClient();
@@ -137,25 +144,49 @@ public class MainActivity extends Activity implements OnRefreshListener {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		// getMenuInflater().inflate(R.menu.main, menu);
 		super.onCreateOptionsMenu(menu);
-		menu.add(0,0,0,"關於");
-		menu.add(0,1,0,"離開");
+		menu.add(0,0,0,"重新整理");
+		menu.add(0,1,0,"設定");
+		menu.add(0,2,0,"關於");
+		menu.add(0,3,0,"離開");
 		return true;
 	}
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
 		super.onOptionsItemSelected(item);
-		if(item.getItemId()==0) {
-			AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-			dialog.setTitle("關於").setMessage("資料來源：行政院原子能源委員會").setPositiveButton("OK", new DialogInterface.OnClickListener() {
-				@Override
-				public void onClick(DialogInterface arg0, int arg1) {
-					// TODO Auto-generated method stub		
+		switch(item.getItemId()) {
+			case 0:
+				if(!refreshing) {
+					refreshing = true;
+					new Thread(new Runnable() {
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							refresh();
+						}
+					}).start();
+					adapter.notifyDataSetChanged();
+					Toast.makeText(this, "重新整理完成", Toast.LENGTH_SHORT).show();
+					refreshing = false;
 				}
-			}).show();
-		}
-		else {
-			this.finish();
+				break;
+			case 1:
+				Intent intent = new Intent();
+				intent.setClass(MainActivity.this, SettingActivity.class);
+				startActivity(intent);
+				break;
+			case 2:
+				AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+				dialog.setTitle("關於").setMessage("資料來源：行政院原子能源委員會").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface arg0, int arg1) {
+						// TODO Auto-generated method stub		
+					}
+				}).show();
+				break;
+			case 3:
+				SysApplication.getInstance().exit(); 
+				break;
 		}
 		return true;
 	}

@@ -33,12 +33,16 @@ int id spb_interpolator_linear 0x7f040001
 int integer spb_default_interpolator 0x7f070001
 int integer spb_default_sections_count 0x7f070000
 int layout activity_main 0x7f030000
-int layout fragment_main 0x7f030001
+int layout activity_setting 0x7f030001
+int layout fragment_main 0x7f030002
+int layout fragment_setting 0x7f030003
 int menu main 0x7f0b0000
+int menu setting 0x7f0b0001
 int string action_settings 0x7f080003
 int string app_name 0x7f080001
 int string hello_world 0x7f080002
 int string spb_default_speed 0x7f080000
+int string title_activity_setting 0x7f080004
 int style AppBaseTheme 0x7f0a0002
 int style AppTheme 0x7f0a0003
 int style SmoothProgressBar 0x7f0a0001

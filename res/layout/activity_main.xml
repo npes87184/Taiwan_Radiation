@@ -12,6 +12,5 @@
         android:layout_height="wrap_content" >
     </org.mariotaku.refreshnow.widget.RefreshNowListView>
 
-
 </FrameLayout>
 
