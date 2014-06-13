@@ -1,22 +1,56 @@
 package com.example.final_project;
 
-import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
+import android.preference.Preference;
+import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class SettingActivity extends Activity {
+public class SettingActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener{
 
+	String auto_update_key;
+	String location_key;
+	String update_frequency_key;
+	CheckBoxPreference checkBoxPreference;
+	ListPreference listPreference1;
+	ListPreference listPreference2;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_setting);
+		addPreferencesFromResource(R.xml.preference);
 		SysApplication.getInstance().addActivity(this);
+		auto_update_key = getResources().getString(R.string.alert_key);
+		location_key = getResources().getString(R.string.location_key);
+		update_frequency_key = getResources().getString(R.string.autoupdate_frequency_key);
+		
+		listPreference1 = (ListPreference)findPreference(location_key);
+		listPreference2 = (ListPreference)findPreference(update_frequency_key);
+		
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+		preferences.registerOnSharedPreferenceChangeListener(this);
+		
 	}
 
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences preference, String key) {
+		if(key.equals(update_frequency_key)) {
+			listPreference2.setSummary(listPreference2.getEntry());
+			System.out.println(listPreference1.getEntry());
+		} else if(key.equals(location_key)) {
+			listPreference1.setSummary(listPreference1.getEntry());
+		}
+	}
 	
 	
 	

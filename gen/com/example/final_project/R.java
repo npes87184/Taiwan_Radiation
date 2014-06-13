@@ -8,6 +8,12 @@
 package com.example.final_project;
 
 public final class R {
+    public static final class array {
+        public static final int auto_update_frequency_entry=0x7f0c0000;
+        public static final int auto_update_frequency_value=0x7f0c0001;
+        public static final int location_entry=0x7f0c0002;
+        public static final int location_value=0x7f0c0003;
+    }
     public static final class attr {
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -137,12 +143,12 @@ containing a value of this type.
         public static final int spb_stroke_width=0x7f010002;
     }
     public static final class bool {
-        public static final int spb_default_mirror_mode=0x7f090001;
-        public static final int spb_default_progressiveStart_activated=0x7f090002;
-        public static final int spb_default_reversed=0x7f090000;
+        public static final int spb_default_mirror_mode=0x7f0a0001;
+        public static final int spb_default_progressiveStart_activated=0x7f0a0002;
+        public static final int spb_default_reversed=0x7f0a0000;
     }
     public static final class color {
-        public static final int spb_default_color=0x7f050000;
+        public static final int spb_default_color=0x7f060000;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -152,26 +158,26 @@ containing a value of this type.
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
     
          */
-        public static final int activity_horizontal_margin=0x7f060002;
-        public static final int activity_vertical_margin=0x7f060003;
-        public static final int spb_default_stroke_separator_length=0x7f060000;
-        public static final int spb_default_stroke_width=0x7f060001;
+        public static final int activity_horizontal_margin=0x7f070002;
+        public static final int activity_vertical_margin=0x7f070003;
+        public static final int spb_default_stroke_separator_length=0x7f070000;
+        public static final int spb_default_stroke_width=0x7f070001;
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f040006;
-        public static final int container=0x7f040004;
-        public static final int listview1=0x7f040005;
-        public static final int spb_interpolator_accelerate=0x7f040000;
-        public static final int spb_interpolator_acceleratedecelerate=0x7f040002;
-        public static final int spb_interpolator_decelerate=0x7f040003;
-        public static final int spb_interpolator_linear=0x7f040001;
+        public static final int action_settings=0x7f050006;
+        public static final int container=0x7f050004;
+        public static final int listview1=0x7f050005;
+        public static final int spb_interpolator_accelerate=0x7f050000;
+        public static final int spb_interpolator_acceleratedecelerate=0x7f050002;
+        public static final int spb_interpolator_decelerate=0x7f050003;
+        public static final int spb_interpolator_linear=0x7f050001;
     }
     public static final class integer {
-        public static final int spb_default_interpolator=0x7f070001;
-        public static final int spb_default_sections_count=0x7f070000;
+        public static final int spb_default_interpolator=0x7f080001;
+        public static final int spb_default_sections_count=0x7f080000;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -180,15 +186,29 @@ containing a value of this type.
         public static final int fragment_setting=0x7f030003;
     }
     public static final class menu {
-        public static final int main=0x7f0b0000;
-        public static final int setting=0x7f0b0001;
+        public static final int main=0x7f0d0000;
+        public static final int setting=0x7f0d0001;
     }
     public static final class string {
-        public static final int action_settings=0x7f080003;
-        public static final int app_name=0x7f080001;
-        public static final int hello_world=0x7f080002;
-        public static final int spb_default_speed=0x7f080000;
-        public static final int title_activity_setting=0x7f080004;
+        public static final int action_settings=0x7f090003;
+        public static final int alert_key=0x7f09000c;
+        public static final int alert_summary=0x7f090006;
+        public static final int alert_title=0x7f090005;
+        /**  <resources> 
+         */
+        public static final int app_name=0x7f090001;
+        public static final int auto_update_frequency_default_value=0x7f09000f;
+        public static final int autoupdate_frequency_key=0x7f09000a;
+        public static final int autoupdate_frequency_summary=0x7f090009;
+        public static final int autoupdate_frequency_title=0x7f090007;
+        public static final int cancel=0x7f09000b;
+        public static final int hello_world=0x7f090002;
+        public static final int location=0x7f09000e;
+        public static final int location_default_value=0x7f090010;
+        public static final int location_key=0x7f09000d;
+        public static final int location_summary=0x7f090008;
+        public static final int spb_default_speed=0x7f090000;
+        public static final int title_activity_setting=0x7f090004;
     }
     public static final class style {
         /** 
@@ -212,13 +232,16 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f0a0002;
+        public static final int AppBaseTheme=0x7f0b0002;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f0a0003;
-        public static final int SmoothProgressBar=0x7f0a0001;
-        public static final int Theme_SmoothProgressBarDefaults=0x7f0a0000;
+        public static final int AppTheme=0x7f0b0003;
+        public static final int SmoothProgressBar=0x7f0b0001;
+        public static final int Theme_SmoothProgressBarDefaults=0x7f0b0000;
+    }
+    public static final class xml {
+        public static final int preference=0x7f040000;
     }
     public static final class styleable {
         /** Attributes that can be used with a SmoothProgressBar.

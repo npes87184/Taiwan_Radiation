@@ -114,7 +114,6 @@ public class MainActivity extends Activity implements OnRefreshListener {
 			public void run() {
 				if(!refreshing) {
 					refreshing = true;
-				
 					new Thread(new Runnable() {
 						@Override
 						public void run() {
