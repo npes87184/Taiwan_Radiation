@@ -87,7 +87,7 @@ public class MainActivity extends Activity implements OnRefreshListener {
 				}
 			}
 			else {
-				list.add("沒有網路，請開啟網路後重新啟動應用。");
+				list.add("沒有網路，請開啟網路後重新整理。");
 			}
 			first = true;
 		} catch (IOException e) {

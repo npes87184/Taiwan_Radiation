@@ -1,6 +1,9 @@
 package com.example.final_project;
 
+
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,8 +12,6 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.view.Menu;
@@ -36,19 +37,37 @@ public class SettingActivity extends PreferenceActivity implements OnSharedPrefe
 		
 		listPreference1 = (ListPreference)findPreference(location_key);
 		listPreference2 = (ListPreference)findPreference(update_frequency_key);
+		checkBoxPreference = (CheckBoxPreference)findPreference(auto_update_key);
 		
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		preferences.registerOnSharedPreferenceChangeListener(this);
-		
 	}
 
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences preference, String key) {
 		if(key.equals(update_frequency_key)) {
 			listPreference2.setSummary(listPreference2.getEntry());
-			System.out.println(listPreference1.getEntry());
+			Intent myService = new Intent(getApplicationContext() , Notify_Service.class);
+			stopService(myService);
+			startService(myService);
 		} else if(key.equals(location_key)) {
 			listPreference1.setSummary(listPreference1.getEntry());
+			Intent myService = new Intent(getApplicationContext() , Notify_Service.class);
+			stopService(myService);
+			startService(myService);
+		} else if (key.equals(auto_update_key)) {
+			if(preference.getBoolean(auto_update_key, false)) {
+				AlarmManager alarms=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
+				Intent myService = new Intent(this, Notify_Service.class);
+				PendingIntent pendingIntent=PendingIntent.getService(this,0,myService,0);
+				alarms.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 60*60*1000, pendingIntent);
+			} else {
+				AlarmManager alarms=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
+				Intent myService = new Intent(this, Notify_Service.class);
+				PendingIntent pendingIntent=PendingIntent.getService(this,0,myService,0);
+				alarms.cancel(pendingIntent); 
+				stopService(myService);
+			}
 		}
 	}
 	
