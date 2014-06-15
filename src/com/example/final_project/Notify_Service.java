@@ -47,7 +47,7 @@ public class Notify_Service extends Service {
 						line = reader.readLine();
 					}
 					String [] data = line.split(",");
-					if(Float.parseFloat(data[2]) >= 0.5) {
+					if(Float.parseFloat(data[2]) >= 0.2) {
 						CharSequence tickerText = "¿ç®g¶W¼Ð";
 						Notification notification = new Notification(R.drawable.ic_launcher, tickerText, System.currentTimeMillis());
 						
