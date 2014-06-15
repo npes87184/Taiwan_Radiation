@@ -1,6 +1,7 @@
 package com.example.final_project;
 
 
+import android.R.integer;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
@@ -25,6 +26,7 @@ public class SettingActivity extends PreferenceActivity implements OnSharedPrefe
 	CheckBoxPreference checkBoxPreference;
 	ListPreference listPreference1;
 	ListPreference listPreference2;
+	Item item = new Item();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,21 +48,32 @@ public class SettingActivity extends PreferenceActivity implements OnSharedPrefe
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences preference, String key) {
 		if(key.equals(update_frequency_key)) {
-			listPreference2.setSummary(listPreference2.getEntry());
-			Intent myService = new Intent(getApplicationContext() , Notify_Service.class);
-			stopService(myService);
-			startService(myService);
+				listPreference2.setSummary(listPreference2.getEntry());
+				AlarmManager alarms=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
+				Intent myService = new Intent(this, Notify_Service.class);
+				item.set(Integer.parseInt(listPreference1.getValue()));
+				PendingIntent pendingIntent=PendingIntent.getService(this,0,myService,0);
+				alarms.cancel(pendingIntent); 
+				stopService(myService);
+				alarms.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), (Long.parseLong(listPreference2.getValue())*60*1000), pendingIntent);
 		} else if(key.equals(location_key)) {
-			listPreference1.setSummary(listPreference1.getEntry());
-			Intent myService = new Intent(getApplicationContext() , Notify_Service.class);
-			stopService(myService);
-			startService(myService);
+				listPreference1.setSummary(listPreference1.getEntry());
+				AlarmManager alarms=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
+				Intent myService = new Intent(this, Notify_Service.class);
+				item.set(Integer.parseInt(listPreference1.getValue()));
+				PendingIntent pendingIntent=PendingIntent.getService(this,0,myService,0);
+				alarms.cancel(pendingIntent); 
+				stopService(myService);
+				alarms.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), (Long.parseLong(listPreference2.getValue())*60*1000), pendingIntent);
 		} else if (key.equals(auto_update_key)) {
 			if(preference.getBoolean(auto_update_key, false)) {
 				AlarmManager alarms=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
-				Intent myService = new Intent(this, Notify_Service.class);
+				Intent myService = new Intent(this, Notify_Service.class); 
+				item.set(Integer.parseInt(listPreference1.getValue()));
 				PendingIntent pendingIntent=PendingIntent.getService(this,0,myService,0);
-				alarms.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 60*60*1000, pendingIntent);
+				alarms.cancel(pendingIntent); 
+				stopService(myService);
+				alarms.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), (Long.parseLong(listPreference2.getValue())*60*1000), pendingIntent);
 			} else {
 				AlarmManager alarms=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
 				Intent myService = new Intent(this, Notify_Service.class);
@@ -70,9 +83,6 @@ public class SettingActivity extends PreferenceActivity implements OnSharedPrefe
 			}
 		}
 	}
-	
-	
-	
 	
 	
 	@Override

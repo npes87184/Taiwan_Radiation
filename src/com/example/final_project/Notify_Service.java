@@ -22,9 +22,20 @@ import android.os.IBinder;
 
 public class Notify_Service extends Service {
     
+	int location = 6;
+	
+	Item item = new Item();
+	 
+/*	@Override
+	public void onStart(Intent intent, int startid) {
+		location = intent.getIntExtra("1", 3);
+	}*/
+	
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 
+		location = item.get();
+		
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -32,11 +43,11 @@ public class Notify_Service extends Service {
 				try {
 					BufferedReader reader = new BufferedReader(new InputStreamReader(getUrlData(),"BIG5"));
 					String line = reader.readLine();
-					for(int i=0;i<6;i++) {
+					for(int i=0;i<location;i++) {
 						line = reader.readLine();
 					}
 					String [] data = line.split(",");
-					if(Float.parseFloat(data[2]) >= 0.003) {
+					if(Float.parseFloat(data[2]) >= 0.5) {
 						CharSequence tickerText = "輻射超標";
 						Notification notification = new Notification(R.drawable.ic_launcher, tickerText, System.currentTimeMillis());
 						
@@ -47,6 +58,7 @@ public class Notify_Service extends Service {
 					    notification.setLatestEventInfo(getApplicationContext(), "輻射超標",data[0] + "的輻射超標了！", contentIntent);
 					    NotificationManager nManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 					    notification.flags = Notification.FLAG_AUTO_CANCEL;
+					    notification.defaults=Notification.DEFAULT_ALL;
 					    nManager.notify(NOTIFICATION_ID, notification);
 					}
 				} catch(IOException e) {

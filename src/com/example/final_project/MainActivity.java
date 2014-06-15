@@ -91,9 +91,9 @@ public class MainActivity extends Activity implements OnRefreshListener {
 			}
 			first = true;
 		} catch (IOException e) {
-			e.printStackTrace();
+			refresh();
 		} catch (URISyntaxException e) {
-			e.printStackTrace();
+			refresh();
 		}
 	}
 	

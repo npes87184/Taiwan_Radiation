@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.final_project"
     android:versionCode="1"
-    android:versionName="1.06" >
+    android:versionName="1.07" >
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -10,6 +10,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -30,7 +31,7 @@
             android:label="@string/title_activity_setting" >
         </activity>
         
-        <service android:name="com.example.final_project.Notify_Service" >  
+        <service android:enabled="true" android:name="com.example.final_project.Notify_Service" >  
         </service>  
         
     </application>
