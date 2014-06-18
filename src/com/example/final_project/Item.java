@@ -1,6 +1,5 @@
 package com.example.final_project;
 
-
 public class Item {
 	private static int loc;
 	

@@ -1,7 +1,5 @@
 package com.example.final_project;
 
-
-import android.R.integer;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
@@ -15,8 +13,11 @@ import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 public class SettingActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener{
 
@@ -110,8 +111,12 @@ public class SettingActivity extends PreferenceActivity implements OnSharedPrefe
 				this.finish();
 				break;
 			case 1:
+				View view = View.inflate(SettingActivity.this, R.layout.about, null); 
+				TextView textView = (TextView) view.findViewById(R.id.textView3);
+				textView.setMovementMethod(LinkMovementMethod.getInstance());
+			
 				AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-				dialog.setTitle("關於").setMessage("資料來源：行政院原子能源委員會").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				dialog.setTitle("關於").setView(view).setPositiveButton("OK", new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface arg0, int arg1) {
 						// TODO Auto-generated method stub		

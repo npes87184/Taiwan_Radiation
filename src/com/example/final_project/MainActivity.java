@@ -26,9 +26,12 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.format.Time;
+import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnRefreshListener {
@@ -175,8 +178,12 @@ public class MainActivity extends Activity implements OnRefreshListener {
 				startActivity(intent);
 				break;
 			case 2:
+				View view = View.inflate(MainActivity.this, R.layout.about, null); 
+				TextView textView = (TextView) view.findViewById(R.id.textView3);
+				textView.setMovementMethod(LinkMovementMethod.getInstance());
+			
 				AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-				dialog.setTitle("關於").setMessage("資料來源：行政院原子能源委員會").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				dialog.setTitle("關於").setView(view).setPositiveButton("OK", new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface arg0, int arg1) {
 						// TODO Auto-generated method stub		
