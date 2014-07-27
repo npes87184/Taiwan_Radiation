@@ -4,10 +4,14 @@ the open source app to get the open data from <a href="http://www.aec.gov.tw/%E8
 
 Latest Version
 ================
-1.08
+1.09
 
 Changelog
 ================
+###1.09
+* add map view
+* clean up some code make it more stable
+
 ###1.08
 * update about
 
@@ -41,11 +45,12 @@ Features
 ================
 1. touch down for refreshing
 2. auto update and check 
-3. light weight
+3. map view and list view
+4. light weight
 
 Picture
 ================
-<img src="http://truth.bahamut.com.tw/s01/201406/9946643f3c60a0d3677b15bd7be4dc3e.PNG">
+<img src="http://truth.bahamut.com.tw/s01/201406/9946643f3c60a0d3677b15bd7be4dc3e.PNG"> <img src="http://truth.bahamut.com.tw/s01/201407/8a3e478f7b33be6c31cebba2d1b33776.PNG">
 
 Thanks
 ================
