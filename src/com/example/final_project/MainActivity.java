@@ -147,9 +147,10 @@ public class MainActivity extends Activity implements OnRefreshListener {
 		// getMenuInflater().inflate(R.menu.main, menu);
 		super.onCreateOptionsMenu(menu);
 		menu.add(0,0,0,"重新整理");
-		menu.add(0,1,0,"設定");
-		menu.add(0,2,0,"關於");
-		menu.add(0,3,0,"離開");
+		menu.add(0,1,0,"地圖顯示");
+		menu.add(0,2,0,"設定");
+		menu.add(0,3,0,"關於");
+		menu.add(0,4,0,"離開");
 		return true;
 	}
 	
@@ -174,10 +175,16 @@ public class MainActivity extends Activity implements OnRefreshListener {
 				break;
 			case 1:
 				Intent intent = new Intent();
+				intent.setClass(MainActivity.this, MapView.class);
+				startActivity(intent);
+				finish();
+				break;
+			case 2:
+				intent = new Intent();
 				intent.setClass(MainActivity.this, SettingActivity.class);
 				startActivity(intent);
 				break;
-			case 2:
+			case 3:
 				View view = View.inflate(MainActivity.this, R.layout.about, null); 
 				TextView textView = (TextView) view.findViewById(R.id.textView3);
 				textView.setMovementMethod(LinkMovementMethod.getInstance());
@@ -190,7 +197,7 @@ public class MainActivity extends Activity implements OnRefreshListener {
 					}
 				}).show();
 				break;
-			case 3:
+			case 4:
 				SysApplication.getInstance().exit(); 
 				break;
 		}

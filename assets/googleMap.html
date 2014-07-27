@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <title>Google Maps JavaScript API v3 Example: Marker Animations</title>
+            <link href="/maps/documentation/javascript/examples/default.css" rel="stylesheet">
+                <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+                <script>
+                    var centerPoint = new google.maps.LatLng(21.5000,120.7800); //中興                    var marker;
+                    var marker;
+                    var map;
+                    var geocoder;
+                    var image = 'taxi-icon.png';//image變數指向計圖示檔案，圖示檔案請放在相同目錄
+                    function mark(lat, log){//標註座標函式
+                        var m = new google.maps.LatLng(lat, log);
+                        marker = new google.maps.Marker({
+                                                        map:map,
+                                                        draggable:true,
+                                                        position: m,
+                                                        icon: image //指定標示圖案為image
+                                                        });
+                    }
+                
+                function centerAt(latitude, longitude){
+                    myLatlng = new google.maps.LatLng(latitude,longitude);
+                    map.panTo(myLatlng);
+                }
+                
+                function resizeMap(size){//
+                    var mid = document.getElementById('map_canvas');
+                    mid.style.height = size + 'px';
+                    if(map != null) {
+                        google.maps.event.trigger(map, 'resize');
+                    }
+                }
+                
+                function codeAddress(address){
+					//var address = document.getElementById('address').value;
+                    geocoder.geocode({'address': address },function(results, status){
+                                     if(status == google.maps.GeocoderStatus.OK){
+                                     map.setCenter(results[0].geometry.location);
+                                    var marker =new google.maps.Marker({
+                                                                        map: map,
+                                                                        position: results[0].geometry.location,
+																		title: address
+                                                                        });      
+								
+                                     }else{        
+                                     alert("Geocode was not successful for the following reason: "+ status);      
+                                     }    
+                                     });  
+                }
+				
+				
+                function initialize() {
+                    geocoder =new google.maps.Geocoder();
+                    var mapOptions = {
+                        zoom: 8,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP,
+                        center: centerPoint
+                    };
+                    
+                    map = new google.maps.Map(document.getElementById('map_canvas'),
+                                              mapOptions);
+                                              
+                }   
+                
+				
+                    </script>
+                </head>
+    <body onload="initialize()">
+        <div id="map_canvas" style="width: device-width; height: 460px;">map div</div>
+    </body>
+</html>
+

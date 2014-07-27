@@ -167,7 +167,7 @@ containing a value of this type.
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f050009;
+        public static final int action_settings=0x7f05000a;
         public static final int container=0x7f050007;
         public static final int listview1=0x7f050008;
         public static final int spb_interpolator_accelerate=0x7f050000;
@@ -177,6 +177,7 @@ containing a value of this type.
         public static final int textView1=0x7f050004;
         public static final int textView2=0x7f050005;
         public static final int textView3=0x7f050006;
+        public static final int webView1=0x7f050009;
     }
     public static final class integer {
         public static final int spb_default_interpolator=0x7f080001;
@@ -185,13 +186,16 @@ containing a value of this type.
     public static final class layout {
         public static final int about=0x7f030000;
         public static final int activity_main=0x7f030001;
-        public static final int activity_setting=0x7f030002;
-        public static final int fragment_main=0x7f030003;
-        public static final int fragment_setting=0x7f030004;
+        public static final int activity_map_view=0x7f030002;
+        public static final int activity_setting=0x7f030003;
+        public static final int fragment_main=0x7f030004;
+        public static final int fragment_map_view=0x7f030005;
+        public static final int fragment_setting=0x7f030006;
     }
     public static final class menu {
         public static final int main=0x7f0d0000;
-        public static final int setting=0x7f0d0001;
+        public static final int map_view=0x7f0d0001;
+        public static final int setting=0x7f0d0002;
     }
     public static final class string {
         public static final int about=0x7f09000f;
@@ -213,6 +217,7 @@ containing a value of this type.
         public static final int location_key=0x7f09000d;
         public static final int location_summary=0x7f090008;
         public static final int spb_default_speed=0x7f090000;
+        public static final int title_activity_map_view=0x7f090012;
         public static final int title_activity_setting=0x7f090004;
     }
     public static final class style {
