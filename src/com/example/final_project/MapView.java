@@ -137,7 +137,7 @@ public class MapView extends Activity {
 						first = false;
 						continue;
 					}
-					inputStrings[i]=data[2];
+					inputStrings[i]=data[0] + "¡G" + data[2];
 				//	System.out.println(inputStrings[i]);
 					i++;
 				}
