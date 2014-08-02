@@ -4,53 +4,31 @@ the open source app to get the open data from <a href="http://www.aec.gov.tw/%E8
 
 Latest Version
 ================
-1.09
+1.1
 
 Changelog
 ================
+###1.1
+* let mapView show more clear
+* fix some marker error
+* add version name in about dialog
+* ota support
+
 ###1.09
 * add map view
 * clean up some code make it more stable
-
-###1.08
-* update about
-
-###1.07
-* fix excessive norm
-
-###1.06
-* finish setting function
-
-
-###1.05
-* add setting framework
-* add default service support
-
-###1.04
-* add setting Activity and more stable
-
-###1.03
-* add touch down for refreshing
-
-###1.02
-* add menu
-
-###1.01
-* add internet verify
-
-###1.0
-* initial release
 
 Features
 ================
 1. touch down for refreshing
 2. auto update and check 
 3. map view and list view
-4. light weight
+4. ota check version support
+5. light weight and no AD
 
 Picture
 ================
-<img src="http://truth.bahamut.com.tw/s01/201406/9946643f3c60a0d3677b15bd7be4dc3e.PNG"> <img src="http://truth.bahamut.com.tw/s01/201407/8a3e478f7b33be6c31cebba2d1b33776.PNG">
+<img src="http://truth.bahamut.com.tw/s01/201406/9946643f3c60a0d3677b15bd7be4dc3e.PNG"> <img src="http://truth.bahamut.com.tw/s01/201408/f890de72df1a3ac7468bb9274a8ab02a.PNG">
 
 Thanks
 ================
