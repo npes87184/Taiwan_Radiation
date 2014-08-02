@@ -192,6 +192,8 @@ containing a value of this type.
         public static final int fragment_main=0x7f030004;
         public static final int fragment_map_view=0x7f030005;
         public static final int fragment_setting=0x7f030006;
+        public static final int no_ota=0x7f030007;
+        public static final int ota=0x7f030008;
     }
     public static final class menu {
         public static final int main=0x7f0d0000;
@@ -207,6 +209,7 @@ containing a value of this type.
         /**  <resources> 
          */
         public static final int app_name=0x7f090001;
+        public static final int app_website=0x7f090013;
         public static final int auto_update_frequency_default_value=0x7f090010;
         public static final int autoupdate_frequency_key=0x7f09000a;
         public static final int autoupdate_frequency_summary=0x7f090009;
@@ -217,6 +220,7 @@ containing a value of this type.
         public static final int location_default_value=0x7f090011;
         public static final int location_key=0x7f09000d;
         public static final int location_summary=0x7f090008;
+        public static final int problem=0x7f090014;
         public static final int spb_default_speed=0x7f090000;
         public static final int title_activity_map_view=0x7f090012;
         public static final int title_activity_setting=0x7f090004;

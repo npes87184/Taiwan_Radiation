@@ -21,10 +21,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.text.format.Time;
 import android.text.method.LinkMovementMethod;
 import android.view.Menu;
@@ -42,12 +44,92 @@ public class MainActivity extends Activity implements OnRefreshListener {
 	ArrayList<String> list = new ArrayList<String>();
 	Time t = new Time();
 	private boolean refreshing = false;
+	private static final double version = 1.1;
+	private String versionString = " ";
+	private static int i;
+	private static final String APP_NAME = "Taiwan_Radiation";
+	private static final String APP_ENTER_NUMBER = "enter_number";
+	
+	private SharedPreferences prefs;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		SysApplication.getInstance().addActivity(this);
+		
+		prefs = getPreferences(MODE_PRIVATE);
+
+		
+		i = prefs.getInt(APP_ENTER_NUMBER, 0);
+		i++;
+		
+		System.out.println(i);
+		
+		if(i > 4) {
+			i = 0;
+			new Thread(new Runnable() {  //auto check version
+				
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					try {
+						ConnectivityManager CM = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+						NetworkInfo info = CM.getActiveNetworkInfo();
+						if((info != null) && info.isConnected()) {
+							BufferedReader reader = new BufferedReader(new InputStreamReader(getUrlDataOta(),"BIG5"));
+							String line;
+							double temp_version = -1;
+							while((line = reader.readLine())!=null) {
+								String [] data = line.split(",");
+								if(data[0].equals(APP_NAME)) {
+									temp_version = Double.parseDouble(data[1]);
+									System.out.println(temp_version);
+									
+									boolean first = true;
+									boolean second = true;
+									int i = 1;
+									for(String aString : data) {
+										if(first) {
+											first = false;
+											continue;
+										}
+										if(second) {
+											versionString = versionString + "新版本號：" + aString;
+											versionString = versionString + "\n\n ";
+											second = false;
+											continue;
+										}
+										versionString = versionString + "      " + i + "." +aString;
+										versionString = versionString + "\n ";
+										i++;
+									}
+									break;
+								}
+							}
+							if(temp_version > version) {
+								Message msg = new Message();
+								msg.what = 1;
+								mHandler.sendMessage(msg);
+							}
+							else {
+								//do nothing
+							}
+						}
+						else {
+							//do nothing
+						}
+					} catch (IOException e) {
+						System.out.println("IO");
+					} catch (URISyntaxException e) {
+						System.out.println("URL");
+					}
+				}
+			}).start();
+		}
+		
+		prefs.edit().putInt(APP_ENTER_NUMBER, i).commit();
+		
 		listView = (RefreshNowListView)findViewById(R.id.listview1);
 		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
 		listView.setOnRefreshListener(this);
@@ -68,6 +150,40 @@ public class MainActivity extends Activity implements OnRefreshListener {
 			}
 		}).start();
 	}
+	
+	Handler mHandler = new Handler() {
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case 1:
+				View view = View.inflate(MainActivity.this, R.layout.ota, null);
+				TextView versionChange = (TextView) view.findViewById(R.id.textView1);
+				versionChange.setText(versionString);
+				versionString = " ";
+				TextView textView = (TextView) view.findViewById(R.id.textView3);
+				textView.setMovementMethod(LinkMovementMethod.getInstance());
+			
+				AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+				dialog.setTitle("新版本").setView(view).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface arg0, int arg1) {
+						// TODO Auto-generated method stub		
+					}
+				}).show();
+				break;
+            }
+          super.handleMessage(msg);
+		}
+	};
+	
+	
+	//get latest version code
+	public InputStream getUrlDataOta() throws URISyntaxException, ClientProtocolException, IOException {
+		DefaultHttpClient client = new DefaultHttpClient();
+		HttpGet method = new HttpGet(new URI("http://www.cmlab.csie.ntu.edu.tw/~npes87184/version.csv"));
+		HttpResponse res = client.execute(method);
+		return res.getEntity().getContent();
+	}
+	
 	
 	public void refresh() {
 		try {

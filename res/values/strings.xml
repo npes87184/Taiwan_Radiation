@@ -21,5 +21,7 @@
     <string name="auto_update_frequency_default_value">60</string>
     <string name="location_default_value">6</string>
     <string name="title_activity_map_view">台灣實時輻射</string>
+    <string name="app_website"> <a href="http://home.gamer.com.tw/creationDetail.php?sn=2479897">更多資訊</a></string>
+    <string name="problem"> 如果您在使用中遇到問題，可以到 <a href="http://home.gamer.com.tw/creationDetail.php?sn=2479897">此網頁</a> 聯繫我，感謝您的使用。</string>
 
 </resources>

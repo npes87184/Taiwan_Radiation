@@ -48,6 +48,8 @@ int layout activity_setting 0x7f030003
 int layout fragment_main 0x7f030004
 int layout fragment_map_view 0x7f030005
 int layout fragment_setting 0x7f030006
+int layout no_ota 0x7f030007
+int layout ota 0x7f030008
 int menu main 0x7f0d0000
 int menu map_view 0x7f0d0001
 int menu setting 0x7f0d0002
@@ -57,6 +59,7 @@ int string alert_key 0x7f09000c
 int string alert_summary 0x7f090006
 int string alert_title 0x7f090005
 int string app_name 0x7f090001
+int string app_website 0x7f090013
 int string auto_update_frequency_default_value 0x7f090010
 int string autoupdate_frequency_key 0x7f09000a
 int string autoupdate_frequency_summary 0x7f090009
@@ -67,6 +70,7 @@ int string location 0x7f09000e
 int string location_default_value 0x7f090011
 int string location_key 0x7f09000d
 int string location_summary 0x7f090008
+int string problem 0x7f090014
 int string spb_default_speed 0x7f090000
 int string title_activity_map_view 0x7f090012
 int string title_activity_setting 0x7f090004
