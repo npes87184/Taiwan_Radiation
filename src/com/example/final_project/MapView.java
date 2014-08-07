@@ -17,6 +17,10 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -28,27 +32,76 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class MapView extends Activity {
+public class MapView extends Activity implements LocationListener {
 
 	private static final String MAP_URL = "file:///android_asset/new.html";
 	private WebView webView;
 	private boolean webviewReady = false; 
 	private String [] inputStrings = new String[45];
-	
+	Double longitude;
+	Double latitude;
 	
 	@JavascriptInterface
 	public String getData(int i) {
-		System.out.println("JS success");
-		System.out.println(inputStrings[i]);
 		return inputStrings[i];
+	}
+	
+	
+	@JavascriptInterface
+	public String getLat() {
+		//取得系統定位服務
+		LocationManager status = (LocationManager) (this.getSystemService(Context.LOCATION_SERVICE));
+		if (status.isProviderEnabled(LocationManager.GPS_PROVIDER) || status.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+			//如果GPS或網路定位開啟，呼叫locationServiceInitial()更新位置
+			locationServiceInitial();
+			return String.valueOf(latitude);
+		} else {
+			return "23.5000";
+		}
+	}
+	
+	
+	@JavascriptInterface
+	public String getLng() {
+		//取得系統定位服務
+		LocationManager status = (LocationManager) (this.getSystemService(Context.LOCATION_SERVICE));
+		if (status.isProviderEnabled(LocationManager.GPS_PROVIDER) || status.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+			//如果GPS或網路定位開啟，呼叫locationServiceInitial()更新位置
+			locationServiceInitial();
+			return String.valueOf(longitude);
+		} else {
+			return "120.7800";
+		}
+	}
+	
+	
+	private LocationManager lms;
+	private String bestProvider = LocationManager.GPS_PROVIDER;	//最佳資訊提供者
+	private void locationServiceInitial() {
+		lms = (LocationManager) getSystemService(LOCATION_SERVICE);	//取得系統定位服務
+		Criteria criteria = new Criteria();	//資訊提供者選取標準
+		bestProvider = lms.getBestProvider(criteria, true);	//選擇精準度最高的提供者
+		Location location = lms.getLastKnownLocation(bestProvider);
+		getLocation(location);
+	}
+	private void getLocation(Location location) {	//將定位資訊顯示在畫面中
+		if(location != null) {
+			longitude = location.getLongitude();	//取得經度
+			latitude = location.getLatitude();	//取得緯度
+		}
+		else {
+			Toast.makeText(this, "無法定位座標", Toast.LENGTH_LONG).show();
+		}
 	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_map_view);
-		SysApplication.getInstance().addActivity(this);
+		SysApplication.getInstance().addActivity(this);		
+		
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -114,6 +167,31 @@ public class MapView extends Activity {
 	}
 	
 
+	@Override
+	public void onLocationChanged(Location arg0) {	//當地點改變時
+		// TODO Auto-generated method stub
+ 
+	}
+ 
+	@Override
+	public void onProviderDisabled(String arg0) {	//當GPS或網路定位功能關閉時
+		// TODO Auto-generated method stub
+ 
+	}
+ 
+	@Override
+	public void onProviderEnabled(String arg0) {	//當GPS或網路定位功能開啟
+		// TODO Auto-generated method stub
+ 
+	}
+ 
+	@Override
+	public void onStatusChanged(String arg0, int arg1, Bundle arg2) {	//定位狀態改變
+		// TODO Auto-generated method stub
+ 
+	}
+	
+	
 	//Download main function.
 	public InputStream getUrlData() throws URISyntaxException, ClientProtocolException, IOException {
 		DefaultHttpClient client = new DefaultHttpClient();

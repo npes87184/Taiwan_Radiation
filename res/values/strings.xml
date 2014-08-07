@@ -17,7 +17,7 @@
     <string name="alert_key">alert_key</string>
     <string name="location_key">location_key</string>
     <string name="location">地點</string>
-    <string name="about"> 項目網址：<a href="https://github.com/npes87184/Taiwan_Radiation">My GitHub</a></string>
+    <string name="about"> 項目網址：<a href="https://github.com/npes87184/Taiwan_Radiation">GitHub</a></string>
     <string name="auto_update_frequency_default_value">60</string>
     <string name="location_default_value">6</string>
     <string name="title_activity_map_view">台灣實時輻射</string>

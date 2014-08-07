@@ -19,12 +19,27 @@
 	
 	
 function initialize() {
-  var myLatlng = new google.maps.LatLng(23.5000,120.7800);
+  var myLatlng = new google.maps.LatLng(AndroidFunction.getLat(),AndroidFunction.getLng());
   var mapOptions = {
-    zoom: 8,
+    zoom: 11,
     center: myLatlng
   }
   var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  
+   var image = 'pin.png';
+   var myLatLng = new google.maps.LatLng(AndroidFunction.getLat(),AndroidFunction.getLng());
+   var infowindow = new google.maps.InfoWindow({
+      content: '我在這裡！'
+  });
+  
+  var beachMarker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      icon: image
+  });
+  google.maps.event.addListener(beachMarker, 'click', function() {
+    infowindow.open(map,beachMarker);
+  });
   
    	var location = [ 
 	[25.259586,121.50066200000003],
