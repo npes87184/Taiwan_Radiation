@@ -44,7 +44,7 @@ public class MainActivity extends Activity implements OnRefreshListener {
 	ArrayList<String> list = new ArrayList<String>();
 	Time t = new Time();
 	private boolean refreshing = false;
-	private static final double version = 1.1;
+	private static final double version = 1.11;
 	private String versionString = " ";
 	private static int i;
 	private static final String APP_NAME = "Taiwan_Radiation";

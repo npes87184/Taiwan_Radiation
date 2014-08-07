@@ -27,6 +27,10 @@ int dimen activity_vertical_margin 0x7f070003
 int dimen spb_default_stroke_separator_length 0x7f070000
 int dimen spb_default_stroke_width 0x7f070001
 int drawable ic_launcher 0x7f020000
+int drawable ic_menu_info_details 0x7f020001
+int drawable ic_menu_myplaces 0x7f020002
+int drawable ic_menu_recent_history 0x7f020003
+int drawable ic_menu_refresh 0x7f020004
 int id action_settings 0x7f05000b
 int id container 0x7f050008
 int id listview1 0x7f050009
