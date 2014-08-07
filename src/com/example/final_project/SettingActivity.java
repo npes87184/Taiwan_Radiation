@@ -45,7 +45,6 @@ public class SettingActivity extends PreferenceActivity implements OnSharedPrefe
 	CheckBoxPreference checkBoxPreference;
 	ListPreference listPreference1;
 	ListPreference listPreference2;
-	Item item = new Item();
 	Preference otaPreference;
 	private ProgressDialog progressDialog;
 	private String versionString = " ";
