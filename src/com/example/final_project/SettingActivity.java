@@ -12,9 +12,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import android.app.AlarmManager;
 import android.app.AlertDialog;
-import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -51,7 +49,7 @@ public class SettingActivity extends PreferenceActivity implements OnSharedPrefe
 	Preference otaPreference;
 	private ProgressDialog progressDialog;
 	private String versionString = " ";
-	private static final double version = 1.1;
+	private static final double version = 1.11;
 	private static final String APP_NAME = "Taiwan_Radiation";
 	
 	@Override
@@ -203,36 +201,33 @@ public class SettingActivity extends PreferenceActivity implements OnSharedPrefe
 	public void onSharedPreferenceChanged(SharedPreferences preference, String key) {
 		if(key.equals(update_frequency_key)) {
 				listPreference2.setSummary(listPreference2.getEntry());
-				AlarmManager alarms=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
 				Intent myService = new Intent(this, Notify_Service.class);
-				item.set(Integer.parseInt(listPreference1.getValue()));
-				PendingIntent pendingIntent=PendingIntent.getService(this,0,myService,0);
-				alarms.cancel(pendingIntent); 
+				System.out.println("setting:"+Integer.parseInt(listPreference1.getValue()));
+				preference.edit().putInt("location", Integer.parseInt(listPreference1.getValue())).commit();
+				System.out.println("setting:"+Long.parseLong(listPreference2.getValue())*60*1000);
+				preference.edit().putLong("time", Long.parseLong(listPreference2.getValue())*60*1000).commit();
 				stopService(myService);
-				alarms.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), (Long.parseLong(listPreference2.getValue())*60*1000), pendingIntent);
+				startService(myService);
 		} else if(key.equals(location_key)) {
 				listPreference1.setSummary(listPreference1.getEntry());
-				AlarmManager alarms=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
 				Intent myService = new Intent(this, Notify_Service.class);
-				item.set(Integer.parseInt(listPreference1.getValue()));
-				PendingIntent pendingIntent=PendingIntent.getService(this,0,myService,0);
-				alarms.cancel(pendingIntent); 
+				System.out.println("setting:"+Integer.parseInt(listPreference1.getValue()));
+				preference.edit().putInt("location", Integer.parseInt(listPreference1.getValue())).commit();
+				System.out.println("setting:"+Long.parseLong(listPreference2.getValue())*60*1000);
+				preference.edit().putLong("time", Long.parseLong(listPreference2.getValue())*60*1000).commit();
 				stopService(myService);
-				alarms.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), (Long.parseLong(listPreference2.getValue())*60*1000), pendingIntent);
+				startService(myService);
 		} else if (key.equals(auto_update_key)) {
 			if(preference.getBoolean(auto_update_key, false)) {
-				AlarmManager alarms=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
-				Intent myService = new Intent(this, Notify_Service.class); 
-				item.set(Integer.parseInt(listPreference1.getValue()));
-				PendingIntent pendingIntent=PendingIntent.getService(this,0,myService,0);
-				alarms.cancel(pendingIntent); 
-				stopService(myService);
-				alarms.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), (Long.parseLong(listPreference2.getValue())*60*1000), pendingIntent);
-			} else {
-				AlarmManager alarms=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
 				Intent myService = new Intent(this, Notify_Service.class);
-				PendingIntent pendingIntent=PendingIntent.getService(this,0,myService,0);
-				alarms.cancel(pendingIntent); 
+				System.out.println("setting:"+Integer.parseInt(listPreference1.getValue()));
+				preference.edit().putInt("location", Integer.parseInt(listPreference1.getValue())).commit();
+				System.out.println("setting:"+Long.parseLong(listPreference2.getValue())*60*1000);
+				preference.edit().putLong("time", Long.parseLong(listPreference2.getValue())*60*1000).commit();
+				stopService(myService);
+				startService(myService);
+			} else {
+				Intent myService = new Intent(this, Notify_Service.class);
 				stopService(myService);
 			}
 		}
