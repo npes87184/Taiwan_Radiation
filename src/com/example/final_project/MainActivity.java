@@ -206,6 +206,7 @@ public class MainActivity extends Activity implements OnRefreshListener {
 				}
 			}
 			else {
+				list.clear();
 				list.add("沒有網路，請開啟網路後重新整理。");
 			}
 			first = true;

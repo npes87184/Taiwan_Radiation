@@ -11,7 +11,6 @@ Changelog
 ###1.2
 * fix if device reboot then need restart app to restart service 
 * mapView will use GPS to support show
-* optimize some code let it more stable
 * add setting activity icon
 
 ###1.1
