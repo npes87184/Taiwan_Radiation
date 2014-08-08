@@ -4,21 +4,18 @@ the open source app to get the open data from <a href="http://www.aec.gov.tw/%E8
 
 Latest Version
 ================
-1.2
+1.21
 
 Changelog
 ================
+###1.21
+* fix touch down refresh FC thanks yi-shiou
+
 ###1.2
 * fix if device reboot then need restart app to restart service 
 * mapView will use GPS to support show
 * optimize some code let it more stable
 * add setting activity icon
-
-###1.1
-* let mapView show more clear
-* fix some marker error
-* add version name in about dialog
-* ota support
 
 Features
 ================

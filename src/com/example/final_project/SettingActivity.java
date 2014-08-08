@@ -48,7 +48,7 @@ public class SettingActivity extends PreferenceActivity implements OnSharedPrefe
 	Preference otaPreference;
 	private ProgressDialog progressDialog;
 	private String versionString = " ";
-	private static final double version = 1.2;
+	private static final double version = 1.21;
 	private static final String APP_NAME = "Taiwan_Radiation";
 	
 	@Override
