@@ -148,7 +148,7 @@ containing a value of this type.
         public static final int spb_default_reversed=0x7f0a0000;
     }
     public static final class color {
-        public static final int spb_default_color=0x7f060000;
+        public static final int spb_default_color=0x7f070000;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -158,10 +158,10 @@ containing a value of this type.
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
     
          */
-        public static final int activity_horizontal_margin=0x7f070002;
-        public static final int activity_vertical_margin=0x7f070003;
-        public static final int spb_default_stroke_separator_length=0x7f070000;
-        public static final int spb_default_stroke_width=0x7f070001;
+        public static final int activity_horizontal_margin=0x7f080002;
+        public static final int activity_vertical_margin=0x7f080003;
+        public static final int spb_default_stroke_separator_length=0x7f080000;
+        public static final int spb_default_stroke_width=0x7f080001;
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
@@ -171,22 +171,22 @@ containing a value of this type.
         public static final int ic_menu_refresh=0x7f020004;
     }
     public static final class id {
-        public static final int action_settings=0x7f05000b;
-        public static final int container=0x7f050008;
-        public static final int listview1=0x7f050009;
-        public static final int spb_interpolator_accelerate=0x7f050000;
-        public static final int spb_interpolator_acceleratedecelerate=0x7f050002;
-        public static final int spb_interpolator_decelerate=0x7f050003;
-        public static final int spb_interpolator_linear=0x7f050001;
-        public static final int textView1=0x7f050004;
-        public static final int textView2=0x7f050005;
-        public static final int textView3=0x7f050007;
-        public static final int textView4=0x7f050006;
-        public static final int webView1=0x7f05000a;
+        public static final int action_settings=0x7f06000b;
+        public static final int container=0x7f060008;
+        public static final int listview1=0x7f060009;
+        public static final int spb_interpolator_accelerate=0x7f060000;
+        public static final int spb_interpolator_acceleratedecelerate=0x7f060002;
+        public static final int spb_interpolator_decelerate=0x7f060003;
+        public static final int spb_interpolator_linear=0x7f060001;
+        public static final int textView1=0x7f060004;
+        public static final int textView2=0x7f060005;
+        public static final int textView3=0x7f060007;
+        public static final int textView4=0x7f060006;
+        public static final int webView1=0x7f06000a;
     }
     public static final class integer {
-        public static final int spb_default_interpolator=0x7f080001;
-        public static final int spb_default_sections_count=0x7f080000;
+        public static final int spb_default_interpolator=0x7f090001;
+        public static final int spb_default_sections_count=0x7f090000;
     }
     public static final class layout {
         public static final int about=0x7f030000;
@@ -205,29 +205,39 @@ containing a value of this type.
         public static final int setting=0x7f0d0002;
     }
     public static final class string {
-        public static final int about=0x7f09000f;
-        public static final int action_settings=0x7f090003;
-        public static final int alert_key=0x7f09000c;
-        public static final int alert_summary=0x7f090006;
-        public static final int alert_title=0x7f090005;
+        public static final int about=0x7f050019;
+        public static final int action_settings=0x7f05000d;
+        public static final int alert_key=0x7f050016;
+        public static final int alert_summary=0x7f050010;
+        public static final int alert_title=0x7f05000f;
         /**  <resources> 
          */
-        public static final int app_name=0x7f090001;
-        public static final int app_website=0x7f090013;
-        public static final int auto_update_frequency_default_value=0x7f090010;
-        public static final int autoupdate_frequency_key=0x7f09000a;
-        public static final int autoupdate_frequency_summary=0x7f090009;
-        public static final int autoupdate_frequency_title=0x7f090007;
-        public static final int cancel=0x7f09000b;
-        public static final int hello_world=0x7f090002;
-        public static final int location=0x7f09000e;
-        public static final int location_default_value=0x7f090011;
-        public static final int location_key=0x7f09000d;
-        public static final int location_summary=0x7f090008;
-        public static final int problem=0x7f090014;
-        public static final int spb_default_speed=0x7f090000;
-        public static final int title_activity_map_view=0x7f090012;
-        public static final int title_activity_setting=0x7f090004;
+        public static final int app_name=0x7f05000b;
+        public static final int app_website=0x7f05001d;
+        public static final int auto_update_frequency_default_value=0x7f05001a;
+        public static final int autoupdate_frequency_key=0x7f050014;
+        public static final int autoupdate_frequency_summary=0x7f050013;
+        public static final int autoupdate_frequency_title=0x7f050011;
+        public static final int cancel=0x7f050015;
+        public static final int define_smoothprogressbar=0x7f050000;
+        public static final int hello_world=0x7f05000c;
+        public static final int library_smoothprogressbar_author=0x7f050001;
+        public static final int library_smoothprogressbar_authorWebsite=0x7f050002;
+        public static final int library_smoothprogressbar_isOpenSource=0x7f050008;
+        public static final int library_smoothprogressbar_libraryDescription=0x7f050004;
+        public static final int library_smoothprogressbar_libraryName=0x7f050003;
+        public static final int library_smoothprogressbar_libraryVersion=0x7f050005;
+        public static final int library_smoothprogressbar_libraryWebsite=0x7f050006;
+        public static final int library_smoothprogressbar_licenseId=0x7f050007;
+        public static final int library_smoothprogressbar_repositoryLink=0x7f050009;
+        public static final int location=0x7f050018;
+        public static final int location_default_value=0x7f05001b;
+        public static final int location_key=0x7f050017;
+        public static final int location_summary=0x7f050012;
+        public static final int problem=0x7f05001e;
+        public static final int spb_default_speed=0x7f05000a;
+        public static final int title_activity_map_view=0x7f05001c;
+        public static final int title_activity_setting=0x7f05000e;
     }
     public static final class style {
         /** 
