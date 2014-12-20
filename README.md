@@ -4,10 +4,13 @@ the open source app to get the open data from <a href="http://www.aec.gov.tw/%E8
 
 Latest Version
 ================
-1.21
+1.22
 
 Changelog
 ================
+###1.22
+* fix the order of the data error
+
 ###1.21
 * fix touch down refresh FC thanks yi-shiou
 
