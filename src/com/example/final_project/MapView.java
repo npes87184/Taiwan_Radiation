@@ -38,7 +38,6 @@ public class MapView extends Activity implements LocationListener {
 
 	private static final String MAP_URL = "file:///android_asset/new.html";
 	private WebView webView;
-	private boolean webviewReady = false; 
 	private String [] inputStrings = new String[45];
 	Double longitude;
 	Double latitude;
@@ -239,7 +238,6 @@ public class MapView extends Activity implements LocationListener {
 			 @Override 
 			 public void onPageFinished(WebView view, String url) {
 				 //webView.loadUrl(centerURL);
-				 webviewReady = true;//webview已經載入完畢
 				 webView.loadUrl("javascript:resizeMap("+ (webView.getHeight()) + ")");
 			 }
 		  });

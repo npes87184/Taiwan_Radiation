@@ -44,7 +44,7 @@ public class MainActivity extends Activity implements OnRefreshListener {
 	ArrayList<String> list = new ArrayList<String>();
 	Time t = new Time();
 	private boolean refreshing = false;
-	private static final double version = 1.21;
+	private static final double version = 1.22;
 	private String versionString = " ";
 	private static int i;
 	private static final String APP_NAME = "Taiwan_Radiation";
@@ -66,7 +66,7 @@ public class MainActivity extends Activity implements OnRefreshListener {
 		
 		System.out.println(i);
 		
-		if(i > 4) {
+		if(i > 2) {
 			i = 0;
 			new Thread(new Runnable() {  //auto check version
 				
