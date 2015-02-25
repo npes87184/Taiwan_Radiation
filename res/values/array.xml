@@ -17,51 +17,51 @@
     </string-array> 
     
 <string-array name="location_entry">   
-        <item>三芝</item>  
-        <item>三港</item>
-        <item>大光</item>        
-        <item>大坪</item>        
-        <item>大鵬</item>        
-        <item>台中</item>        
-        <item>台北</item>        
-        <item>台東</item>        
-        <item>台南</item>        
-        <item>石門</item>        
+        <item>石門</item>  
+        <item>三芝</item>
         <item>石崩山</item>        
-        <item>竹北</item>        
-        <item>宜蘭</item>        
-        <item>板橋</item>        
-        <item>花蓮</item>        
-        <item>金山</item>        
-        <item>金門</item>        
-        <item>阿里山</item>        
-        <item>南投</item>        
-        <item>屏東市</item>        
-        <item>後壁湖</item>        
-        <item>恆春</item>        
         <item>茂林</item>        
-        <item>苗栗</item>        
-        <item>貢寮</item>        
-        <item>馬祖</item>        
-        <item>高雄</item>        
-        <item>基隆</item>        
+        <item>金山</item>        
         <item>野柳</item>        
+        <item>大鵬</item>        
         <item>陽明山</item>        
-        <item>雲林</item>        
-        <item>新竹</item>        
+        <item>大坪</item>        
         <item>萬里</item>        
-        <item>嘉義</item>        
-        <item>彰化</item>        
-        <item>滿州</item>        
-        <item>澎湖</item>        
-        <item>墾丁</item>        
-        <item>澳底</item>        
-        <item>頭城</item>        
-        <item>龍門</item>        
-        <item>龍泉</item>        
+        <item>台北</item>        
+        <item>宜蘭</item>        
         <item>龍潭</item>        
+        <item>台中</item>        
+        <item>台東</item>        
+        <item>高雄</item>        
+        <item>恆春</item>        
+        <item>龍泉</item>        
+        <item>大光</item>        
+        <item>墾丁</item>        
+        <item>後壁湖</item>        
+        <item>澳底</item>        
+        <item>貢寮</item>        
+        <item>阿里山</item>        
+        <item>金門</item>        
+        <item>蘭嶼</item>        
+        <item>台南</item>        
+        <item>龍門</item>        
         <item>雙溪</item>        
-        <item>蘭嶼</item>  
+        <item>三港</item>        
+        <item>新竹</item>        
+        <item>花蓮</item>        
+        <item>澎湖</item>        
+        <item>馬祖</item>        
+        <item>滿州</item>        
+        <item>板橋</item>        
+        <item>屏東</item>        
+        <item>基隆</item>        
+        <item>頭城</item>        
+        <item>竹北</item>        
+        <item>苗栗</item>        
+        <item>南投</item>        
+        <item>彰化</item>        
+        <item>雲林</item>        
+        <item>嘉義</item>  
     </string-array> 
     
    <string-array name="location_value">   
